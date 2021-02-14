@@ -5,6 +5,9 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import React from "react";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import Navbar from "./Navbar";
 
 const useStyles = makeStyles({
 	table: {
@@ -12,47 +15,50 @@ const useStyles = makeStyles({
 	},
   });
   
-  function createData(name, calories, fat, carbs, protein) {
-	return { name, calories, fat, carbs, protein };
+  function createData(Pname, PID, Uprice, qty) {
+	return { Pname, PID, Uprice, qty };
   }
   
   const rows = [
-	createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-	createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-	createData('Eclair', 262, 16.0, 24, 6.0),
-	createData('Cupcake', 305, 3.7, 67, 4.3),
-	createData('Gingerbread', 356, 16.0, 49, 3.9),
+	createData('Frozen yoghurt', 1001, 60.0, 60, ),
+	createData('Ice cream sandwich', 1002, 90.0, 40, ),
+	createData('Eclair', 1003, 100.0, 25, ),
+	createData('Cupcake', 1004, 45.5, 20, ),
+	createData('Gingerbread', 1005, 30.0, 50, ),
   ];
   
   export default function table() {
 	const classes = useStyles();
   
 	return (
+		<container>
+			<Navbar/>
+			<div>
 	  <TableContainer component={Paper}>
 		<Table className={classes.table} aria-label="simple table">
 		  <TableHead>
 			<TableRow>
-			  <TableCell>Dessert (100g serving)</TableCell>
-			  <TableCell align="right">Calories</TableCell>
-			  <TableCell align="right">Fat&nbsp;(g)</TableCell>
-			  <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-			  <TableCell align="right">Protein&nbsp;(g)</TableCell>
-			</TableRow>
+			  <TableCell>Product Name</TableCell>
+			  <TableCell align="right">Product ID</TableCell>
+			  <TableCell align="right">Unit Price</TableCell>
+			  <TableCell align="right">Quantity</TableCell>
+			 </TableRow>
 		  </TableHead>
 		  <TableBody>
 			{rows.map(row => (
-			  <TableRow key={row.name}>
+			  <TableRow key={row.Pname}>
 				<TableCell component="th" scope="row">
-				  {row.name}
+				  {row.Pname}
 				</TableCell>
-				<TableCell align="right">{row.calories}</TableCell>
-				<TableCell align="right">{row.fat}</TableCell>
-				<TableCell align="right">{row.carbs}</TableCell>
-				<TableCell align="right">{row.protein}</TableCell>
-			  </TableRow>
+				<TableCell align="right">{row.PID}</TableCell>
+				<TableCell align="right">{row.Uprice}</TableCell>
+				<TableCell align="right">{row.qty}</TableCell>
+				</TableRow>
 			))}
 		  </TableBody>
 		</Table>
 	  </TableContainer>
+			</div>
+		</container>
 	);
   }
